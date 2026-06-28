@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<title>争夺欧洲霸权的斗争</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
+<meta name="theme-color" content="#1a1a2e">
+<style>
+:root {
+  --bg: #faf8f5;
+  --bg2: #f0ece6;
+  --text: #2c2c2c;
+  --text2: #666;
+  --accent: #8b4513;
+  --accent2: #a0522d;
+  --card: #fff;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --border: #e8e0d8;
+  --page-max: 900px;
+}
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --bg2: #16213e;
+  --text: #e0d8cc;
+  --text2: #999;
+  --accent: #c8956c;
+  --accent2: #d4a574;
+  --card: #1f2544;
+  --shadow: 0 2px 12px rgba(0,0,0,0.3);
+  --border: #2a2a4a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { 
+  height: 100%; overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Serif SC", "Source Han Serif CN", serif;
+  background: var(--bg); color: var(--text);
+  transition: background 0.3s, color 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== Splash Screen ===== */
+#splash {
+  position: fixed; inset: 0; z-index: 1000;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #e0d8cc; transition: opacity 0.6s;
+}
+#splash.hide { opacity: 0; pointer-events: none; }
+#splash h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: 2px; }
+#splash .subtitle { font-size: 14px; color: #999; margin-bottom: 40px; }
+#splash .author { font-size: 13px; color: #777; margin-top: 12px; }
+#splash .progress-ring { width: 80px; height: 80px; }
+#splash .progress-ring circle { fill: none; stroke-width: 3; }
+#splash .progress-ring .bg { stroke: rgba(255,255,255,0.1); }
+#splash .progress-ring .fg { stroke: var(--accent); stroke-linecap: round; transition: stroke-dashoffset 0.3s; transform: rotate(-90deg); transform-origin: center; }
+#splash .load-text { font-size: 12px; color: #666; margin-top: 16px; }
+
+/* ===== Header ===== */
+#header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 16px; height: 48px;
+  transition: transform 0.3s, background 0.3s;
+  padding-top: env(safe-area-inset-top, 8px);
+}
+#header.hidden { transform: translateY(-100%); }
+.header-title {
+  font-size: 15px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 60%;
+}
+.header-actions { display: flex; gap: 4px; }
+.header-btn {
+  width: 36px; height: 36px; border: none; background: transparent;
+  color: var(--text2); font-size: 18px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s;
+}
+.header-btn:active { background: var(--bg2); }
+
+/* ===== Main Content ===== */
+#reader {
+  position: fixed; top: 48px; bottom: 0; left: 0; right: 0;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+#reader::-webkit-scrollbar { width: 0; }
+.page-container {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 12px 8px;
+  padding-bottom: env(safe-area-inset-bottom, 12px);
+}
+.page-wrapper {
+  position: relative; width: 100%; max-width: var(--page-max);
+  margin-bottom: 8px; border-radius: 8px; overflow: hidden;
+  box-shadow: var(--shadow); background: #fff;
+  transition: transform 0.2s;
+}
+[data-theme="dark"] .page-wrapper { background: #2a2a3a; }
+.page-wrapper canvas { width: 100%; height: auto; display: block; }
+.page-num {
+  position: absolute; bottom: 6px; right: 10px;
+  font-size: 11px; color: rgba(0,0,0,0.3); font-family: system-ui;
+  background: rgba(255,255,255,0.7); padding: 1px 6px; border-radius: 10px;
+}
+[data-theme="dark"] .page-num { color: rgba(255,255,255,0.4); background: rgba(0,0,0,0.4); }
+
+/* ===== Sidebar / TOC ===== */
+#sidebar-mask {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.4); opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+#sidebar-mask.open { opacity: 1; pointer-events: auto; }
+#sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0; z-index: 201;
+  width: 300px; max-width: 80vw; background: var(--card);
+  transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex; flex-direction: column;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+}
+#sidebar.open { transform: translateX(0); }
+.sidebar-header {
+  padding: 20px 20px 12px; border-bottom: 1px solid var(--border);
+}
+.sidebar-header h2 { font-size: 18px; color: var(--accent); margin-bottom: 4px; }
+.sidebar-header .info { font-size: 12px; color: var(--text2); }
+#toc-list {
+  flex: 1; overflow-y: auto; padding: 8px 0;
+  -webkit-overflow-scrolling: touch;
+}
+.toc-item {
+  display: flex; align-items: center; padding: 10px 20px;
+  font-size: 14px; color: var(--text); cursor: pointer;
+  transition: background 0.15s; border-left: 3px solid transparent;
+}
+.toc-item:active { background: var(--bg2); }
+.toc-item.active { border-left-color: var(--accent); background: var(--bg2); font-weight: 600; }
+.toc-item .level1 { padding-left: 0; }
+.toc-item .level2 { padding-left: 20px; font-size: 13px; color: var(--text2); }
+.toc-page { margin-left: auto; font-size: 11px; color: var(--text2); font-family: system-ui; }
+
+/* ===== Bottom Bar ===== */
+#bottom-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg); border-top: 1px solid var(--border);
+  padding: 8px 16px; padding-bottom: env(safe-area-inset-bottom, 8px);
+  transition: transform 0.3s, background 0.3s;
+}
+#bottom-bar.hidden { transform: translateY(100%); }
+.progress-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+#page-slider {
+  flex: 1; -webkit-appearance: none; appearance: none;
+  height: 4px; border-radius: 2px; background: var(--border); outline: none;
+}
+#page-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--accent); cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.page-info { font-size: 12px; color: var(--text2); font-family: system-ui; white-space: nowrap; }
+.bottom-actions { display: flex; justify-content: space-around; }
+.bottom-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  border: none; background: transparent; color: var(--text2);
+  font-size: 11px; cursor: pointer; padding: 4px 12px; border-radius: 8px;
+}
+.bottom-btn .icon { font-size: 20px; }
+.bottom-btn:active { background: var(--bg2); }
+.bottom-btn.active { color: var(--accent); }
+
+/* ===== Bookmark Toast ===== */
+.toast {
+  position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--card); color: var(--text); padding: 10px 20px;
+  border-radius: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  font-size: 13px; opacity: 0; transition: all 0.3s; z-index: 300;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ===== Bookmarks Panel ===== */
+#bookmarks-panel {
+  position: fixed; top: 48px; right: 0; bottom: 0; z-index: 150;
+  width: 280px; max-width: 80vw; background: var(--card);
+  transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15); display: flex; flex-direction: column;
+}
+#bookmarks-panel.open { transform: translateX(0); }
+#bookmarks-panel .panel-header {
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+#bookmarks-panel .panel-header h3 { font-size: 16px; color: var(--accent); }
+#bookmarks-list { flex: 1; overflow-y: auto; padding: 8px 0; }
+.bookmark-item {
+  display: flex; align-items: center; padding: 10px 20px;
+  font-size: 13px; cursor: pointer; transition: background 0.15s;
+}
+.bookmark-item:active { background: var(--bg2); }
+.bookmark-item .bm-page { font-size: 12px; color: var(--accent); font-family: system-ui; margin-right: 10px; }
+.bookmark-item .bm-delete { margin-left: auto; color: #c0392b; font-size: 16px; padding: 4px; }
+.empty-state { text-align: center; padding: 40px 20px; color: var(--text2); font-size: 13px; }
+
+/* ===== Loading indicator ===== */
+#load-more {
+  text-align: center; padding: 20px; color: var(--text2); font-size: 13px;
+}
+.spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border);
+  border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== Search panel ===== */
+#search-panel {
+  position: fixed; top: 48px; left: 0; right: 0; z-index: 150;
+  background: var(--card); border-bottom: 1px solid var(--border);
+  padding: 12px 16px; transform: translateY(-100%);
+  transition: transform 0.3s; box-shadow: var(--shadow);
+}
+#search-panel.open { transform: translateY(0); }
+#search-input {
+  width: 100%; padding: 10px 16px; border: 1px solid var(--border);
+  border-radius: 10px; font-size: 15px; background: var(--bg);
+  color: var(--text); outline: none;
+}
+#search-input:focus { border-color: var(--accent); }
+</style>
+</head>
+<body>
+<!-- Splash Screen -->
+<div id="splash">
+  <div class="progress-ring">
+    <svg viewBox="0 0 80 80">
+      <circle class="bg" cx="40" cy="40" r="36"/>
+      <circle class="fg" id="splash-ring" cx="40" cy="40" r="36" 
+        stroke-dasharray="226.2" stroke-dashoffset="226.2"/>
+    </svg>
+  </div>
+  <h1 style="margin-top:20px">争夺欧洲霸权的斗争</h1>
+  <div class="subtitle">1848 - 1918</div>
+  <div class="author">S. B. 克莱夫 著</div>
+  <div class="load-text" id="load-text">正在加载...</div>
+</div>
+
+<!-- Header -->
+<div id="header">
+  <button class="header-btn" id="btn-toc" title="目录">☰</button>
+  <div class="header-title" id="header-title">争夺欧洲霸权的斗争</div>
+  <div class="header-actions">
+    <button class="header-btn" id="btn-search" title="搜索">🔍</button>
+    <button class="header-btn" id="btn-bookmark" title="书签">🔖</button>
+  </div>
+</div>
+
+<!-- Search Panel -->
+<div id="search-panel">
+  <input type="text" id="search-input" placeholder="输入关键词搜索（需PDF含文字层）...">
+</div>
+
+<!-- Sidebar (TOC) -->
+<div id="sidebar-mask"></div>
+<div id="sidebar">
+  <div class="sidebar-header">
+    <h2>📑 目录</h2>
+    <div class="info" id="toc-info"></div>
+  </div>
+  <div id="toc-list"></div>
+</div>
+
+<!-- Bookmarks Panel -->
+<div id="bookmarks-panel">
+  <div class="panel-header">
+    <h3>🔖 书签</h3>
+    <button class="header-btn" id="btn-close-bm">✕</button>
+  </div>
+  <div id="bookmarks-list">
+    <div class="empty-state">暂无书签<br><small>点击底部 🔖 按钮添加</small></div>
+  </div>
+</div>
+
+<!-- Reader -->
+<div id="reader">
+  <div class="page-container" id="page-container"></div>
+  <div id="load-more"><span class="spinner"></span>加载中...</div>
+</div>
+
+<!-- Bottom Bar -->
+<div id="bottom-bar">
+  <div class="progress-row">
+    <input type="range" id="page-slider" min="1" max="667" value="1">
+    <span class="page-info" id="page-info">1 / 667</span>
+  </div>
+  <div class="bottom-actions">
+    <button class="bottom-btn" id="btn-prev"><span class="icon">⬆</span>上一页</button>
+    <button class="bottom-btn" id="btn-add-bm"><span class="icon">🔖</span>书签</button>
+    <button class="bottom-btn" id="btn-theme"><span class="icon">🌙</span>夜间</button>
+    <button class="bottom-btn" id="btn-next"><span class="icon">⬇</span>下一页</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- PDF.js -->
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.379/build/pdf.min.mjs" type="module" id="pdfjs-script"></script>
+<script type="module">
+import * as pdfjsLib from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.379/build/pdf.min.mjs';
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.379/build/pdf.worker.min.mjs';
+
+// ===== Config =====
+const PDF_PATH = '争夺欧洲霸权的斗争（1848-1918年）.pdf';
+const RENDER_BATCH = 5;       // pages rendered at a time
+const SCALE = 1.8;            // render scale
+
+// ===== State =====
+let pdfDoc = null;
+let totalPages = 0;
+let renderedPages = new Set();
+let currentPage = 1;
+let isLoadingBatch = false;
+let bookmarks = JSON.parse(localStorage.getItem('europe-bookmarks') || '[]');
+let isDark = localStorage.getItem('europe-theme') === 'dark';
+let tocData = [];
+let headerVisible = true;
+let lastScrollTop = 0;
+
+// ===== DOM =====
+const $ = id => document.getElementById(id);
+const reader = $('reader');
+const container = $('page-container');
+const splash = $('splash');
+const splashRing = $('splash-ring');
+const loadText = $('load-text');
+
+// ===== Theme =====
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  $('btn-theme').querySelector('.icon').textContent = isDark ? '☀' : '🌙';
+  $('btn-theme').querySelector('.next-child')?.textContent;
+}
+applyTheme();
+
+// ===== Toast =====
+function showToast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ===== Splash progress =====
+function updateSplash(pct, text) {
+  const offset = 226.2 * (1 - pct / 100);
+  splashRing.style.strokeDashoffset = offset;
+  if (text) loadText.textContent = text;
+}
+
+// ===== Load PDF =====
+async function loadPDF() {
+  try {
+    updateSplash(10, '正在定位PDF文件...');
+    // Try multiple paths
+    let loadingTask;
+    const tryPaths = [PDF_PATH, './' + PDF_PATH];
+    
+    for (const p of tryPaths) {
+      try {
+        loadingTask = pdfjsLib.getDocument(p);
+        updateSplash(30, '正在解析PDF...');
+        pdfDoc = await loadingTask.promise;
+        break;
+      } catch(e) {
+        if (p === tryPaths[tryPaths.length - 1]) throw e;
+      }
+    }
+    
+    totalPages = pdfDoc.numPages;
+    $('page-slider').max = totalPages;
+    $('page-info').textContent = `1 / ${totalPages}`;
+    $('toc-info').textContent = `共 ${totalPages} 页`;
+    
+    updateSplash(50, '正在加载目录...');
+    
+    // Load TOC
+    try {
+      const outline = await pdfDoc.getOutline();
+      if (outline) {
+        tocData = await processOutline(outline);
+        renderTOC();
+      }
+    } catch(e) { console.warn('TOC load failed:', e); }
+    
+    updateSplash(70, '正在渲染前几页...');
+    
+    // Render first batch
+    await renderBatch(1, RENDER_BATCH);
+    
+    updateSplash(100, '准备就绪！');
+    setTimeout(() => {
+      splash.classList.add('hide');
+      setTimeout(() => splash.style.display = 'none', 600);
+    }, 400);
+    
+    // Load bookmarks UI
+    renderBookmarks();
+    
+  } catch(err) {
+    updateSplash(100, '❌ 加载失败：请确保PDF文件在同一目录');
+    console.error(err);
+    loadText.innerHTML = `❌ 加载失败<br><small>错误: ${err.message}<br>请将PDF文件放在与此HTML相同的目录</small>`;
+  }
+}
+
+// ===== Process TOC =====
+async function processOutline(items, level = 1) {
+  const result = [];
+  for (const item of items) {
+    let page = 1;
+    try {
+      const dest = await pdfDoc.getDestination(item.dest);
+      if (dest) {
+        const idx = await pdfDoc.getPageIndex(dest[0]);
+        page = idx + 1;
+      }
+    } catch(e) {}
+    result.push({ title: item.title, page, level });
+    if (item.items?.length) {
+      const children = await processOutline(item.items, level + 1);
+      result.push(...children);
+    }
+  }
+  return result;
+}
+
+// ===== Render TOC =====
+function renderTOC() {
+  const list = $('toc-list');
+  list.innerHTML = tocData.map((item, i) => `
+    <div class="toc-item level${item.level}" data-page="${item.page}" data-idx="${i}">
+      <span>${item.title}</span>
+      <span class="toc-page">${item.page}</span>
+    </div>
+  `).join('');
+  
+  list.querySelectorAll('.toc-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const page = parseInt(el.dataset.page);
+      goToPage(page);
+      closeSidebar();
+    });
+  });
+}
+
+// ===== Render pages =====
+async function renderBatch(start, count) {
+  if (isLoadingBatch) return;
+  isLoadingBatch = true;
+  
+  const end = Math.min(start + count - 1, totalPages);
+  
+  for (let i = start; i <= end; i++) {
+    if (renderedPages.has(i)) continue;
+    
+    const page = await pdfDoc.getPage(i);
+    const viewport = page.getViewport({ scale: SCALE });
+    
+    const wrapper = document.createElement('div');
+    wrapper.className = 'page-wrapper';
+    wrapper.dataset.page = i;
+    
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    
+    const num = document.createElement('div');
+    num.className = 'page-num';
+    num.textContent = i;
+    
+    wrapper.appendChild(canvas);
+    wrapper.appendChild(num);
+    container.appendChild(wrapper);
+    
+    renderedPages.add(i);
+    updateSplash(70 + 30 * ((i - start + 1) / count), `渲染第 ${i} 页...`);
+  }
+  
+  $('load-more').style.display = renderedPages.size >= totalPages ? 'none' : '';
+  isLoadingBatch = false;
+}
+
+// ===== Navigate =====
+function goToPage(page) {
+  page = Math.max(1, Math.min(page, totalPages));
+  currentPage = page;
+  $('page-slider').value = page;
+  $('page-info').textContent = `${page} / ${totalPages}`;
+  
+  // If page not rendered, render it and nearby
+  if (!renderedPages.has(page)) {
+    const start = Math.max(1, page - 2);
+    renderBatch(start, RENDER_BATCH).then(() => {
+      scrollToPage(page);
+    });
+  } else {
+    scrollToPage(page);
+  }
+  
+  // Update TOC active state
+  updateTocActive(page);
+}
+
+function scrollToPage(page) {
+  const el = container.querySelector(`[data-page="${page}"]`);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function updateTocActive(page) {
+  let activeIdx = 0;
+  for (let i = 0; i < tocData.length; i++) {
+    if (tocData[i].page <= page) activeIdx = i;
+  }
+  document.querySelectorAll('.toc-item').forEach((el, i) => {
+    el.classList.toggle('active', i === activeIdx);
+  });
+}
+
+// ===== Sidebar =====
+function openSidebar() {
+  $('sidebar-mask').classList.add('open');
+  $('sidebar').classList.add('open');
+  $('bookmarks-panel').classList.remove('open');
+}
+function closeSidebar() {
+  $('sidebar-mask').classList.remove('open');
+  $('sidebar').classList.remove('open');
+}
+
+// ===== Bookmarks =====
+function renderBookmarks() {
+  const list = $('bookmarks-list');
+  if (!bookmarks.length) {
+    list.innerHTML = '<div class="empty-state">暂无书签<br><small>点击底部 🔖 按钮添加</small></div>';
+    return;
+  }
+  list.innerHTML = bookmarks
+    .sort((a, b) => a.page - b.page)
+    .map((bm, i) => `
+      <div class="bookmark-item" data-page="${bm.page}">
+        <span class="bm-page">P.${bm.page}</span>
+        <span>${bm.title || '第 ' + bm.page + ' 页'}</span>
+        <span class="bm-delete" data-idx="${i}">✕</span>
+      </div>
+    `).join('');
+  
+  list.querySelectorAll('.bookmark-item').forEach(el => {
+    el.addEventListener('click', (e) => {
+      if (e.target.classList.contains('bm-delete')) {
+        const idx = parseInt(e.target.dataset.idx);
+        bookmarks.splice(idx, 1);
+        localStorage.setItem('europe-bookmarks', JSON.stringify(bookmarks));
+        renderBookmarks();
+        showToast('书签已删除');
+        return;
+      }
+      goToPage(parseInt(el.dataset.page));
+      $('bookmarks-panel').classList.remove('open');
+    });
+  });
+}
+
+function addBookmark() {
+  const exists = bookmarks.find(b => b.page === currentPage);
+  if (exists) {
+    showToast('这一页已有书签');
+    return;
+  }
+  bookmarks.push({ page: currentPage, title: `第 ${currentPage} 页`, time: Date.now() });
+  localStorage.setItem('europe-bookmarks', JSON.stringify(bookmarks));
+  renderBookmarks();
+  showToast(`已添加书签：第 ${currentPage} 页`);
+}
+
+// ===== Scroll tracking =====
+let scrollTimer;
+reader.addEventListener('scroll', () => {
+  clearTimeout(scrollTimer);
+  scrollTimer = setTimeout(() => {
+    // Find current visible page
+    const children = container.children;
+    const readerRect = reader.getBoundingClientRect();
+    let closest = 1;
+    let minDist = Infinity;
+    
+    for (const child of children) {
+      const rect = child.getBoundingClientRect();
+      const dist = Math.abs(rect.top - readerRect.top);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = parseInt(child.dataset.page);
+      }
+    }
+    
+    if (closest !== currentPage) {
+      currentPage = closest;
+      $('page-slider').value = closest;
+      $('page-info').textContent = `${closest} / ${totalPages}`;
+      updateTocActive(closest);
+    }
+    
+    // Auto-hide header on scroll down
+    const st = reader.scrollTop;
+    if (st > lastScrollTop && st > 100) {
+      $('header').classList.add('hidden');
+      $('bottom-bar').classList.add('hidden');
+      headerVisible = false;
+    } else {
+      $('header').classList.remove('hidden');
+      $('bottom-bar').classList.remove('hidden');
+      headerVisible = true;
+    }
+    lastScrollTop = st;
+    
+    // Infinite scroll: load more when near bottom
+    const scrollHeight = reader.scrollHeight;
+    if (st + readerRect.height >= scrollHeight - 500 && !isLoadingBatch) {
+      const nextRendered = renderedPages.size > 0 ? Math.max(...renderedPages) + 1 : 1;
+      if (nextRendered <= totalPages) {
+        renderBatch(nextRendered, RENDER_BATCH);
+      }
+    }
+  }, 50);
+});
+
+// ===== Event Listeners =====
+$('btn-toc').addEventListener('click', openSidebar);
+$('sidebar-mask').addEventListener('click', closeSidebar);
+$('btn-bookmark').addEventListener('click', () => {
+  $('bookmarks-panel').classList.toggle('open');
+  $('sidebar').classList.remove('open');
+  $('sidebar-mask').classList.remove('open');
+});
+$('btn-close-bm').addEventListener('click', () => $('bookmarks-panel').classList.remove('open'));
+$('btn-add-bm').addEventListener('click', addBookmark);
+$('btn-theme').addEventListener('click', () => {
+  isDark = !isDark;
+  localStorage.setItem('europe-theme', isDark ? 'dark' : 'light');
+  applyTheme();
+});
+$('btn-prev').addEventListener('click', () => goToPage(currentPage - 1));
+$('btn-next').addEventListener('click', () => goToPage(currentPage + 1));
+$('page-slider').addEventListener('input', (e) => goToPage(parseInt(e.target.value)));
+
+// Tap to toggle UI
+reader.addEventListener('click', (e) => {
+  if (e.target.closest('.page-wrapper') || e.target.closest('#page-container')) {
+    const x = e.clientX;
+    const w = window.innerWidth;
+    if (x > w * 0.7) {
+      goToPage(currentPage + 1);
+    } else if (x < w * 0.3) {
+      goToPage(currentPage - 1);
+    } else {
+      // Toggle UI
+      if (headerVisible) {
+        $('header').classList.add('hidden');
+        $('bottom-bar').classList.add('hidden');
+        headerVisible = false;
+      } else {
+        $('header').classList.remove('hidden');
+        $('bottom-bar').classList.remove('hidden');
+        headerVisible = true;
+      }
+    }
+  }
+});
+
+// Keyboard
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToPage(currentPage - 1);
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToPage(currentPage + 1);
+});
+
+// ===== Init =====
+loadPDF();
+</script>
+</body>
+</html>
