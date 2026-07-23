@@ -5,7 +5,7 @@ Wu
 乌迪诺 Oudinot
 乌勃里尔 Oubril
 乌泽多姆 Usedom
-乌尔屈哈特（戴维） Urquhart (David)
+乌尔屈哈特（戴维）Urquhart (David)
 Xi
 西摩 Seymour
 西库尔 Circourt
@@ -25,13 +25,13 @@ Ya
 亚历山大(塞尔维亚国王) Alexander
 雅古 Jagow
 Ye
-叶克 Jächk
+叶克 Jäch
 Yi
-伊藤 (博文) Ito (Hirobumi)
+伊藤(博文) Ito (Hirobumi)
 伊莎贝拉 Isabella
 伊斯迈尔 Ismail
 伊万-马勒 Iwan-Muller
-伊兹伏尔斯基 Izwolski
+伊兹伏尔斯基 Izvolski
 伊格纳吉也夫 Ignatiev
 You
 尤金妮亚 Eugenie
@@ -42,7 +42,7 @@ Zha
 Zhan
 詹姆斯森 Jameson
 Zhang
-张伯伦（约瑟夫） Chamberlain (Joseph)
+张伯伦(约瑟夫) Chamberlain (Joseph)
 Zhu
 朱米尼 Jomini
 朱瑟朗 Jusserand

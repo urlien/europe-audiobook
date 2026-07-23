@@ -3,8 +3,8 @@ Ma
 马沙尔 Marschall
 马尔尚 Marchand
 马可尼 Marconi
-马热黎 Margerie
-马拉开 Mlalaret
+马热蒙 Margerie
+马拉莱 Mlalaret
 马拉古志 Malaguzzi
 马萨里克 Masaryk
 马蒂尔德 Mathilde
@@ -34,7 +34,6 @@ Men
 Meng
 蒙森 Monson
 蒙泰伊 Monteil
-
 蒙卡列里 Moncalieri
 蒙特贝洛 Montebello
 蒙特格拉斯 Montgelas
@@ -43,11 +42,11 @@ Mi
 米拉 Murat
 米敦 Medem
 米尔纳 Milner
-米尔堡 Mühlberg
+米尔堡 Mühlliberg
 米勒兰 Millerand
 米柳可夫 Miliukov
 米里伯尔 Miribel
-米里尤柯夫 Miliukov
+米里尤柯夫 Miljukov
 米洛斯劳斯基 Mieroslawski
 米夏埃利斯 Michaelis
 Ming
@@ -66,7 +65,6 @@ Mu
 穆伊 Mouy
 穆兰 Monlin
 穆蒂埃 Moustier
-
 Na
 纳米埃 Namier
 纳比埃 Napier
@@ -75,4 +73,3 @@ Nai
 Nei
 内斯尔罗德 Nesselrode
 Ni
-643

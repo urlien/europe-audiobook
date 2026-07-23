@@ -1,1 +1,4 @@
-.gh_token
+-e 
+# Audio files (use Releases)
+output/audio/*.wav
+output/audio/*.pcm

@@ -1,9 +1,9 @@
 尼韦尔 Nivelle
 尼格拉 Nigra
-尼米兹 Nemitz
+尼米兹 Nernitz
 尼拉托夫 Neratov
 尼里多夫 Nelidov
-尼科尔森 Nicholson
+尼科尔森 Nicolson
 尼克卢多夫 Nekludov
 尼古拉大公 Nicholas
 尼古拉耶夫 Nikolayev
@@ -13,7 +13,7 @@ Nuo
 诺思 North
 诺阿耶 Noailles
 诺曼比 Normanby
-诺思科特 Norchote
+诺思科特 Norcote
 
 Pa
 帕克 Parker
@@ -54,8 +54,8 @@ Qie
 Qiu
 丘吉尔(伦道夫) Churchill (Randolph)
 丘吉尔(温斯顿) Churchill (Winston)
-Qu
-屈尔曼 Kühlmann
+Qū
+屈尔 Kühlmann
 
 Rao
 饶勒斯 Jaurès
@@ -68,15 +68,12 @@ Sa
 萨拉查 Salazar
 萨布罗夫 Saburov
 萨佐诺夫 Sazonov
-
 Sai
 赛克斯 Sykes
-赛根尼 Szögeny
-
+赛根尼 Szögyeny
 Sang
 桑德森 Sanderson
 桑亚克 Sanjak
-
 Sha
 沙夫茨伯里 Shaftesbury
 Shang

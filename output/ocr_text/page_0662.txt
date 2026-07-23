@@ -10,7 +10,7 @@ Duo
 
 En
 恩图曼 Omdurman
-恩贾尔·斯克莱西 Unkiar Skelessi
+恩贾尔·斯凯莱西 Unkiar Skelessi
 
 Fa
 法休达 Fashoda
@@ -39,8 +39,6 @@ He
 Hei
 黑森 Hesse
 
-648
-
 黑塞哥维那 Hercegovina
 Ji
 基尔 Kiel
@@ -57,12 +55,12 @@ Ka
 Ke
 克拉科夫 Cracow
 科尼亚 Koniah
-科索沃 Kosovo
+科索沃 Kossovo
 科布伦茨 Coblenz
 科诺皮什特 Konopischt
-科尼克格雷茨 Königgrätz
+科尼格雷茨 Königgrätz
 Ku
-库思托查 Custozza
+库思托查 Custoza
 库尔德斯坦 Kurdistan
 库楚克·开纳吉 Kutchuk Kainardji
 Kun
@@ -81,3 +79,5 @@ Le
 Li
 里加 Riga
 利瓦吉亚 Livadia
+
+648

@@ -1,10 +1,10 @@
 色雷斯 Thrace
 瑟堡 Cherbourg
 She
-蛇岛 Serpents’ Island
+蛇岛 Serpents' Island
 Sheng
 圣卢西亚湾 St. Lucia Bay
-圣·斯特法诺 San Stefano
+圣·斯特芬诺 San Stefano
 Shi
 士麦拿 Smyrna
 施纳贝勒 Schnaebele
@@ -15,7 +15,7 @@ Si
 斯图加特 Stuttgart
 斯普利特 Split
 斯莱士威克 Sleswick
-斯凯尔涅维采 Skierniewice
+斯凯尔涅维采 Skieniwice
 Su
 苏斯 Sus
 苏黎世 Zurich
@@ -39,7 +39,7 @@ Tuo
 Wa
 瓦尔河 Vaal
 We
-威尼斯亚 Venetia
+威尼斯 Venetia
 Wei
 威斯特伐利亚 Westphalia
 维罗纳 Verona
@@ -59,7 +59,7 @@ Xiu
 
 Ya
 亚尼纳 Janina
-亚历山德罗夫 Alexandrovo
+亚历山德罗夫 Alexanderovo
 Ye
 耶拿 Jena
 Yi
@@ -74,6 +74,4 @@ Ze
 泽拉 Zeila
 泽布勒赫 Zeebrugge
 Zhong
-中洛锡安 Mildlothian
-
-650
+中洛锡安 Midlothian

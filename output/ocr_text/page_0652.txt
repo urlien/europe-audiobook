@@ -4,7 +4,7 @@ A
 阿尔伯(撒丁国王) Albert
 阿伯丁 Aberdeen
 阿拉戈 Arago
-阿诺托 Hanotaaux
+阿诺托 Hanotaux
 阿提拉 Attila
 阿斯奎斯 Asquith
 阿尼姆-苏科 Arnim-Suckow
@@ -33,9 +33,11 @@ Ao
 奥西尼 Orsini
 奥皮克 Aupick
 奥康纳 O’Connor
-奥伊伦堡 Eulenberg
+奥伊伦堡 Eulenburg
 奥尔洛夫 Orlov
 奥利维埃 Ollivier
+
+638
 
 奥斯滕-萨肯 Osten-Sacken
 奥斯曼帕夏 Osman Pasha
@@ -74,5 +76,3 @@ Bei
 贝尼格森 Bennigsen
 贝格勒本 Biegeleben
 贝佐勃拉卓夫 Bezobrazov
-
-638

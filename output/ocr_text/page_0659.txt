@@ -6,7 +6,7 @@ Sheng
 巴泰勒米·圣-伊莱 Barthélemy Saint-Hilaire
 Shi
 史里芬 Schlieffen
-施莱尼茨 Schleinitz
+施莱尼茨 Schleinits
 施蒂默尔 Stürmer
 施默尔林 Schmerling
 施魏尼茨 Schweinitz
@@ -14,19 +14,19 @@ Shi
 施奈德-克罗索特 Schneider-Creusot
 Shu
 舒斯特 Shuster
-舒瓦洛夫(保罗) Shuvalov (Paul)
-舒瓦洛夫(彼得) Shuvalov (Peter)
+舒瓦洛夫（保罗） Shuvalov (Paul)
+舒瓦洛夫（彼得） Shuvalov (Peter)
 Si
-斯担利 Stanley
-斯塔尔 Staal
+斯坦利 Stanley
+斯达尔 Staal
 斯皮莱 Spueler
 斯潘塞 Spencer
 斯科特 Scott
 斯托雷平 Stolypin
 斯柯贝列夫 Skobelev
-斯托雅诺维奇 Stojanovic
+斯托雅诺维克 Stojanovic
 斯佩克·冯·斯特恩堡 Speck von Sternburg
-斯特拉福·德·雷德克利夫(斯特拉福·凯宁) Stratford de Redcliffe (Stratford Canning)
+斯特拉福·德·雷德克利夫（斯特拉福·凯宁） Stratford de Redcliffe (Stratford Canning)
 Su
 苏皮洛 Supilo
 Suo
@@ -50,12 +50,11 @@ Tu
 图弗内尔 Thouvenel
 Tuo
 托克维尔 Tocqueville
-
 Wa
 瓦扬 Vaillant
 瓦德西 Waldersee
 瓦卢斯基 Walewski
-瓦西什柯娃 Vassishikova
+瓦西什科娃 Vassishikova
 Wei
 韦尔斯 Wells
 韦森贝格 Wessenberg

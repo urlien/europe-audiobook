@@ -34,10 +34,10 @@ Mo
 摩尔达维亚 Moldavia
 摩尔曼斯克 Murmansk
 默宙 Merv
-
 Ni
 尼科尔斯堡 Nikolsburg
 Nuo
+
 诺尔河 Nore
 萨瓦拉 Novara
 诺曼底 Normandy
@@ -56,8 +56,10 @@ Pu
 
 Qi
 齐美尔瓦尔得 Zimmerwald
+
 Ri
 日德兰 Jutland
+
 Sa
 萨尔 Saar
 萨瓦 Savoy
@@ -76,4 +78,5 @@ Sang
 桑德海峡 Sound
 Se
 色当 Sedan
+
 649

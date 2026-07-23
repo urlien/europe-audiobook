@@ -1,4 +1,4 @@
-地名中文外文对照表
+地名中外文对照表
 
 A
 阿尔马 Alma
@@ -15,16 +15,16 @@ Ai
 埃姆斯(河) Ems
 埃尔富特 Erfurt
 埃克斯累班 Aix-les-Bains
-埃克斯拉-夏佩勒 Aix-la-Chapelle
+埃克斯-拉-夏佩勒 Aix-la-Chapelle
 
 An
 安科纳 Ancona
-安格拉·佩奎那(湾) Angra Pequena
+安格拉 佩奎那(湾) Angra Pequena
 
 Ao
 奥斯本 Osborne
 奥塞尔 Auxerre
-奥斯但德 Ostend
+奥斯坦德 Ostend
 奥兰群岛 Aaland Islands
 奥洛莫乌茨 Olomouc
 
@@ -39,12 +39,10 @@ Bei
 贝西卡湾 Besika bay
 
 Bi
-
-比
-比赛夫 Bizerta
+比塞夫 Bizerta
 比亚里茨 Biarritz
 比萨拉比亚 Bessarabia
-比利亚弗兰卡 Villafranca
+比亚弗兰卡 Villafranca
 毕由克 Björkö
 
 Bo
